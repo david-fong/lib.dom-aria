@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "es2019",
+		"lib": ["es2020"],
+		"module": "es2020",
+        "moduleResolution": "node",
+		"resolveJsonModule": true,
+
+		// Grammar Checking:
+		"strict": true,
+		"strictPropertyInitialization": false,
+		"noImplicitAny": false,
+		"noImplicitReturns": true,
+		"noUncheckedIndexedAccess": true,
+	},
+	"include": ["src/", "./generate.js"],
+}

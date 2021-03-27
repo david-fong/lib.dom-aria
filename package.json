@@ -1,0 +1,22 @@
+{
+  "name": "lib.dom-enums",
+  "version": "1.0.0",
+  "description": "Enum types and documentation extending lib.dom.d.ts",
+  "keywords": [
+    "lib.dom"
+  ],
+  "license": "MIT",
+  "author": "David Fong",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/david-fong/lib.dom-enums.git"
+  },
+  "type": "module",
+  "main": "",
+  "types": "lib.dom-enums.d.ts",
+  "scripts": {
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.36"
+  }
+}
