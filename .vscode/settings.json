@@ -1,0 +1,61 @@
+{
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "files.exclude": {
+        // generic excludes:
+        "node_modules/{[^.@]*,}": true,
+        "package-lock.json": true,
+        "pnpm-lock.yaml": true,
+        "**/tsconfig.tsbuildinfo": true,
+
+        // things that I might like to toggle:
+        "data/{.github,media,samples,*.md,web-data/node_modules}": true,
+        "{**/.eslintrc.*,.eslintignore}": true,
+        "dist/**/*.map": true,
+        "node_modules/": true,
+    },
+    "search.exclude": {
+        "node_modules/": true,
+        "**/*.code-search": true,
+
+        "**/*tsconfig*.json": false,
+        "{**/.eslintrc.*,.eslintignore}": false,
+    },
+    "files.associations": {
+        ".eslintignore": "ignore",
+    },
+    "json.schemas": [
+        {
+            "fileMatch": [ "*tsconfig*.json" ],
+            "url": "http://json.schemastore.org/tsconfig",
+        },{
+            "fileMatch": [ "*cSpell.json" ],
+            "url": "https://raw.githubusercontent.com/streetsidesoftware/cspell/cspell4/cspell.schema.json",
+        },{
+            "fileMatch": [ "*package*.json" ],
+            "url": "https://json.schemastore.org/package",
+        },{
+            "fileMatch": [ ".eslintrc.json" ],
+            "url": "https://json.schemastore.org/eslintrc",
+        },
+    ],
+
+    "files.trimTrailingWhitespace": true,
+
+    "todo-tree.filtering.useBuiltInExcludes": "file excludes",
+    "todo-tree.general.statusBar": "total",
+    "todo-tree.general.tags": [
+        "TODO.design",
+        "TODO.impl",
+        "TODO",
+    ],
+
+    "[javascript]": {
+        "editor.insertSpaces": false,
+    },
+    "[typescript]": {
+        "editor.insertSpaces": false,
+    },
+    "[css]": {
+        "editor.insertSpaces": false,
+    },
+}

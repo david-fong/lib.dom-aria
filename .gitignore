@@ -1,2 +1,5 @@
 node_modules/
 data/
+
+# output
+/lib.dom-enums.d.ts
