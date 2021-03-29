@@ -1,8 +1,8 @@
-import _AttrVal     from "../data/web-data/html/valueSets.json";
-import _GlobalAttr  from "../data/web-data/html/htmlGlobalAttributes.json";
-import _HtmlTags    from "../data/web-data/html/htmlTags.json";
-import _AriaAttr    from "../data/web-data/html/ariaSpec.json";
-import _AriaAttrVal from "../data/web-data/html/ariaData.json";
+import _AttrVal     from "./data/web-data/html/valueSets.json";
+import _GlobalAttr  from "./data/web-data/html/htmlGlobalAttributes.json";
+import _HtmlTags    from "./data/web-data/html/htmlTags.json";
+import _AriaAttr    from "./data/web-data/html/ariaSpec.json";
+import _AriaAttrVal from "./data/web-data/html/ariaData.json";
 
 /** @type {readonly { name: string, values: { name: string, description?: { kind: string, value: string } }[] }[]} */
 export const AttrVal = Object.freeze(_AttrVal);

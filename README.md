@@ -1,10 +1,8 @@
 # lib.dom-attributes
 
-Adds attribute-related types on top of lib.dom.d.ts. Uses [microsoft/vscode-custom-data](https://github.com/microsoft/vscode-custom-data) (the same source of information used for VS Code's HTML and CSS autocomplete suggestions and hover documentation).
+This project adds typings for attributes that are _not_ reflected as DOM properties in major browsers. For attributes that are in scope and deprecated, it seeks to make that clear via documentation rather than omitting them from the generated output.
 
-## Scope
-
-This project aims to add typings for attributes that are _not_ reflected as DOM properties in major browsers. For attributes that are in scope and deprecated, it will seek to make that clear to code authors via documentation instead of omitting them from the generated output.
+It uses [microsoft/vscode-custom-data](https://github.com/microsoft/vscode-custom-data) (the same source of information used for VS Code's HTML and CSS autocomplete suggestions and hover documentation).
 
 ## How to Use
 

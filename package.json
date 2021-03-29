@@ -1,7 +1,7 @@
 {
-  "name": "lib.dom-enums",
+  "name": "lib.dom-attributes",
   "version": "1.0.0",
-  "description": "Enum types and documentation extending lib.dom.d.ts",
+  "description": "Attribute types and documentation extending lib.dom.d.ts",
   "keywords": [
     "lib.dom"
   ],
@@ -9,11 +9,11 @@
   "author": "David Fong",
   "repository": {
     "type": "git",
-    "url": "https://github.com/david-fong/lib.dom-enums.git"
+    "url": "https://github.com/david-fong/lib.dom-attributes.git"
   },
   "type": "module",
   "main": "",
-  "types": "lib.dom-enums.d.ts",
+  "types": "lib.dom-attributes.d.ts",
   "scripts": {
     "gen": "node --experimental-json-modules './generate.js'"
   },
