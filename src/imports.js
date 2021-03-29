@@ -4,7 +4,7 @@ import _HtmlTags    from "../data/web-data/html/htmlTags.json";
 import _AriaAttr    from "../data/web-data/html/ariaSpec.json";
 import _AriaAttrVal from "../data/web-data/html/ariaData.json";
 
-/** @type {readonly { name: string, values: { name: string, description?: { kind: string, value: string } } }[]} */
+/** @type {readonly { name: string, values: { name: string, description?: { kind: string, value: string } }[] }[]} */
 export const AttrVal = Object.freeze(_AttrVal);
 
 /** @type {readonly { name: string, description?: string, valueSet?: string }[]} */

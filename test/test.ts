@@ -1,3 +1,5 @@
 import "../lib.dom-enums";
-const test = document.createElement("html");
-test.setAttribute("", "");
+const t = document.createElement("html");
+t.setAttribute("", "");
+
+const a = document.createElement("body");

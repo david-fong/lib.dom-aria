@@ -11,6 +11,8 @@ import {
 } from "./imports.js";
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
+const NEEDS_GLOBAL_ATTR = ["contextmenu", "dropzone", "exportparts", "is", "itemid", "itemprop", "itemref", "itemscope", "itemtype", "part"];
+
 Object.freeze(AttrVal);
 Object.freeze(AriaAttr);
 Object.freeze(AriaAttrVal);
@@ -26,58 +28,37 @@ function docStringify(/**@type {string}*/content, /**@type {{deprecated?: boolea
 	return `/** ${content.replace(/\*\//g, "\*/")} ${depStr} */`;
 }
 
-// TODO: filter out things where the description includes "Do not use", and ""
-// TODO: look at generateData.js and see how it uses the data to make doc strings.
+// TODO: specifically override setAttribute with the deprecation annotation for those that are deprecated.
 
-const valueSet = new Map(AttrVal.map((vs) => {
-	// TODO: find out if there is a way to document individual options.
-	// TODO: Capitalize the first letter of the type name.
-	const typeName = vs.name;
-	const dtsStr = `type ${typeName} = ` + vs.values.map((val) => `"${val.name}"`).join(" | ") + ";";
-	return [vs.name, Object.freeze({
-		values: vs.values,
-		typeName,
-		dtsStr,
-	})];
-}));
 const valueSetDtsStr = `
-/** */
-declare namespace HtmlAttributes {
-	/** */
-	namespace Values {
-		${[...valueSet.values()].map((desc) => desc.dtsStr).join("\n\t\t")}
-	}
+/** @internal */
+interface HtmlAttributeValues {
+	${AttrVal.map((desc) => {
+		return `${desc.name}: ` + desc.values.map((val) => `"${val.name}"`).join(" | ") + ";";
+	}).join("\n\t")}
 }`;
-
-
-// TODO
-const tagsDtsStr = `
-/** */
-${HtmlTags.forEach((desc) => {
-	return "";
-})}
-`;
 
 
 const ariaAttrDoc = new Map(AriaAttr.map((spec) => [spec.name, spec.description]));
 const ariaAttrVal = new Map(AriaAttrVal.map((data) => [data.name, data.valueSet]));
 const ariaDtsStr = `
 /** Aria Attributes */
-interface Element {
+interface HtmlAriaAttributeMap {
 	${[...ariaAttrDoc.keys()].map((name) => {
-		const doc = docStringify(ariaAttrDoc.get(name));
-		const val = ["string"];
-		const valSet = valueSet.get(ariaAttrVal.get(name))?.typeName;
-		if (valSet) {
-			val.push("HtmlAttributes.Values." + valSet);
-		}
-		const sig = `\n\tsetAttribute(qualifiedName: "${name}", value: ${val.join(" | ")}): void;`;
-		return doc + sig;
+		const type = ariaAttrVal.get(name);
+		return `"${name}": ${type ? `HtmlAttributeValues["${type}"]` : "string"};`;
 	}).join("\n\t")}
+}
+
+/** */
+interface Element {
+	/** */
+	setAttribute<K extends keyof HtmlAriaAttributeMap>(qualifiedName: K, value: HtmlAriaAttributeMap[K]): void;
 }`;
 
 
 const dtsStr = `
+/// <reference lib="DOM"/>
 /// <reference no-default-lib="true"/>
 ${valueSetDtsStr}
 ${ariaDtsStr}
