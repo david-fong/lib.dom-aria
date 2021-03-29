@@ -16,7 +16,7 @@ Once that happens, I hope that either one of [VS Code's Custom Data](https://git
 
 But even after that happens, there will probably be lots of code lying around that uses setAttribute. Hopefully this project will help for that.
 
-## How to Build
+## How to Build / Update
 
 https://github.com/microsoft/vscode-custom-data#updating-web-data
 

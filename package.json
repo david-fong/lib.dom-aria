@@ -1,6 +1,6 @@
 {
   "name": "lib.dom-attributes",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Attribute types and documentation extending lib.dom.d.ts",
   "keywords": [
     "lib.dom"
@@ -13,6 +13,7 @@
   },
   "type": "module",
   "main": "",
+  "files": ["lib.dom-attributes.d.ts"],
   "types": "lib.dom-attributes.d.ts",
   "scripts": {
     "gen": "node --experimental-json-modules './generate.js'"
