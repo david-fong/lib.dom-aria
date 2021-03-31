@@ -1,6 +1,6 @@
 # lib.dom-attributes
 
-This project adds typings for attributes that are _not_ reflected as DOM properties in major browsers. For attributes that are in scope and deprecated, it seeks to make that clear via documentation rather than omitting them from the generated output.
+This project adds typings for attributes that are _not_ reflected as DOM properties by all major browsers. For such attributes which are deprecated, it seeks to make that clear via doc comments rather than omitting them from the generated output.
 
 It uses [microsoft/vscode-custom-data](https://github.com/microsoft/vscode-custom-data) (the same source of information used for VS Code's HTML and CSS autocomplete suggestions and hover documentation).
 

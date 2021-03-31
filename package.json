@@ -13,8 +13,8 @@
   },
   "type": "module",
   "main": "",
-  "files": ["lib.dom-attributes.d.ts"],
-  "types": "lib.dom-attributes.d.ts",
+  "files": ["dist/"],
+  "types": "dist/lib.dom-attributes.d.ts",
   "scripts": {
     "gen": "node --experimental-json-modules './generate.js'"
   },
