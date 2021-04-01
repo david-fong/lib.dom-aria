@@ -1,5 +1,5 @@
 {
-  "name": "lib.dom-attributes",
+  "name": "lib.dom-aria",
   "version": "0.0.0",
   "description": "Attribute types and documentation extending lib.dom.d.ts",
   "keywords": [
@@ -9,12 +9,12 @@
   "author": "David Fong",
   "repository": {
     "type": "git",
-    "url": "https://github.com/david-fong/lib.dom-attributes.git"
+    "url": "https://github.com/david-fong/lib.dom-aria.git"
   },
   "type": "module",
   "main": "",
   "files": ["dist/"],
-  "types": "dist/lib.dom-attributes.d.ts",
+  "types": "dist/lib.dom-aria.d.ts",
   "scripts": {
     "gen": "node --experimental-json-modules './generate.js'"
   },

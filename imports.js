@@ -13,6 +13,7 @@ export const GlobalAttr = Object.freeze(_GlobalAttr);
 /** */
 export const HtmlTags = Object.freeze(_HtmlTags);
 
+_AriaAttr.push({ name: "role", description: "" });
 /** */
 export const AriaAttr = Object.freeze(_AriaAttr);
 

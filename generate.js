@@ -26,6 +26,9 @@ function docStringify(/**@type {string}*/content, /**@type {{deprecated?: boolea
 		: "";
 	return `/** ${content.replace(/\*\//g, "\*/")} ${depStr} */`;
 }
+function kebab2camel(/**@type {string}*/kebab) {
+	return kebab.replace(/([-_][a-zA-Z])/g, ($1) => $1[1].toUpperCase());
+}
 
 const valueSetDtsStr = `
 /** */
@@ -37,9 +40,10 @@ interface Val {
 
 
 const ariaAttrVal = new Map(AriaAttrVal.map((data) => [data.name, data.valueSet]));
+ariaAttrVal.set("role", "roles")
 const ariaDtsStr = `
 /** */
-interface Attributes {
+interface AriaAttr {
 	${AriaAttr.filter((desc) => !desc.description.includes("Deprecated")).map((desc) => {
 		const type = ariaAttrVal.get(desc.name);
 		return `"${desc.name}": ${type ? `Val["${type}"]` : "string"};`;
@@ -47,7 +51,7 @@ interface Attributes {
 }
 
 /** */
-interface DeprecatedAttributes {
+interface DepdAriaAttr {
 	${AriaAttr.filter((desc) => desc.description.includes("Deprecated")).map((desc) => {
 		const type = ariaAttrVal.get(desc.name);
 		return `"${desc.name}": ${type ? `Val["${type}"]` : "string"};`;
@@ -56,15 +60,27 @@ interface DeprecatedAttributes {
 
 /** */
 interface Element {
-	hasAttribute<K extends keyof Attributes>(qualifiedName: K): boolean;
-	setAttribute<K extends keyof Attributes>(qualifiedName: K, value: Attributes[K]): void;
-    toggleAttribute<K extends keyof Attributes>(qualifiedName: K, force?: boolean): boolean;
-	removeAttribute<K extends keyof Attributes>(qualifiedName: K): void;
+	hasAttribute<K extends keyof AriaAttr>(qualifiedName: K): boolean;
+	setAttribute<K extends keyof AriaAttr>(qualifiedName: K, value: AriaAttr[K]): void;
+    toggleAttribute<K extends keyof AriaAttr>(qualifiedName: K, force?: boolean): boolean;
+	removeAttribute<K extends keyof AriaAttr>(qualifiedName: K): void;
+${AriaAttr.filter((desc) => !desc.description.includes("Deprecated") && desc.name !== "role").map((desc) => {
+	const type = ariaAttrVal.get(desc.name);
+	return `
+	/** ${desc.description} */
+	${kebab2camel(desc.name)}: ${type ? `Val["${type}"]` : "string"};`;
+}).join("")}
 
-	/** @deprecated */ hasAttribute<K extends keyof DeprecatedAttributes>(qualifiedName: K): boolean;
-	/** @deprecated */ setAttribute<K extends keyof DeprecatedAttributes>(qualifiedName: K, value: DeprecatedAttributes[K]): void;
-    /** @deprecated */ toggleAttribute<K extends keyof DeprecatedAttributes>(qualifiedName: K, force?: boolean): boolean;
-	/** @deprecated */ removeAttribute<K extends keyof DeprecatedAttributes>(qualifiedName: K): void;
+	/** @deprecated */ hasAttribute<K extends keyof DepdAriaAttr>(qualifiedName: K): boolean;
+	/** @deprecated */ setAttribute<K extends keyof DepdAriaAttr>(qualifiedName: K, value: DepdAriaAttr[K]): void;
+    /** @deprecated */ toggleAttribute<K extends keyof DepdAriaAttr>(qualifiedName: K, force?: boolean): boolean;
+	/** @deprecated */ removeAttribute<K extends keyof DepdAriaAttr>(qualifiedName: K): void;
+${AriaAttr.filter((desc) => desc.description.includes("Deprecated")).map((desc) => {
+	const type = ariaAttrVal.get(desc.name);
+	return `
+	/** ${desc.description} @deprecated */
+	${kebab2camel(desc.name)}: ${type ? `Val["${type}"]` : "string"};`;
+}).join("")}
 }`;
 
 
@@ -76,6 +92,6 @@ ${ariaDtsStr}
 `;
 
 fs.writeFileSync(
-	path.resolve(__dirname, "dist/lib.dom-attributes.d.ts"),
+	path.resolve(__dirname, "dist/lib.dom-aria.d.ts"),
 	dtsStr,
 );
