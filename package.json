@@ -1,9 +1,9 @@
 {
   "name": "lib.dom-aria",
   "version": "0.0.0",
-  "description": "Attribute types and documentation extending lib.dom.d.ts",
+  "description": "Types for web ARIA attributes + a polyfill for their reflection as DOM properties",
   "keywords": [
-    "lib.dom"
+    "aria", "lib.dom", "polyfill"
   ],
   "license": "MIT",
   "author": "David Fong",

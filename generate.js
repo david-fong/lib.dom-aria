@@ -84,14 +84,34 @@ ${AriaAttr.filter((desc) => desc.description.includes("Deprecated")).map((desc) 
 }`;
 
 
+/** */
 const dtsStr = `
 /// <reference lib="DOM"/>
 /// <reference no-default-lib="true"/>
 ${valueSetDtsStr}
 ${ariaDtsStr}
 `;
-
 fs.writeFileSync(
 	path.resolve(__dirname, "dist/lib.dom-aria.d.ts"),
 	dtsStr,
+);
+
+/** */
+const polyfillStr = `(function polyfillAriaReflection() {
+"use strict";
+function r(attrName, propName) {
+	Object.defineProperty(Element.prototype, propName, {
+		configurable: false,
+		get: function getAttr() { return this.getAttribute(attrName); },
+		set: function setAttr(val) { this.setAttribute(attrName, val); },
+	});
+}
+if ("ariaLabel" in Element.prototype) { return; }
+${AriaAttr.filter((desc) => !desc.description.includes("Deprecated")).map((desc) => {
+	return `\tr("${desc.name}", "${kebab2camel(desc.name)}");`;
+}).join("\n")}
+})();`;
+fs.writeFileSync(
+	path.resolve(__dirname, "dist/polyfill.js"),
+	polyfillStr,
 );
