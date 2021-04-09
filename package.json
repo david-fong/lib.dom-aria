@@ -1,6 +1,6 @@
 {
   "name": "lib.dom-aria",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Types for web ARIA attributes + a polyfill for their reflection as DOM properties",
   "keywords": [
     "aria", "lib.dom", "polyfill"
