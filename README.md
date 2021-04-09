@@ -1,5 +1,7 @@
 # lib.dom-aria
 
+[![npm version][npm-version-label]][npm-url]
+
 This project adds typings for the web's aria attributes. It also adds a polyfill for the reflection of those attributes as DOM Element properties.
 
 It uses [microsoft/vscode-custom-data](https://github.com/microsoft/vscode-custom-data) (the same source of information used for VS Code's HTML and CSS autocomplete suggestions and hover documentation).
@@ -27,3 +29,6 @@ yarn generate-data
 cd ../..
 node generate.js
 ```
+
+[npm-version-label]: https://img.shields.io/npm/v/lib.dom-aria
+[npm-url]: https://www.npmjs.com/package/lib.dom-aria.log

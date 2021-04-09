@@ -30,17 +30,19 @@ function kebab2camel(/**@type {string}*/kebab) {
 	return kebab.replace(/([-_][a-zA-Z])/g, ($1) => $1[1].toUpperCase());
 }
 
+// TODO remove entries that are not used.
+const ariaAttrVal = new Map(AriaAttrVal.map((data) => [data.name, data.valueSet]));
+ariaAttrVal.set("role", "roles");
+const usedValueSets = new Set(ariaAttrVal.values());
 const valueSetDtsStr = `
 /** */
 interface Val {
-	${AttrVal.map((desc) => {
+	${AttrVal.filter(val => usedValueSets.has(val.name)).map((desc) => {
 		return `${desc.name}: ` + desc.values.map((val) => `"${val.name}"`).join(" | ") + ";";
 	}).join("\n\t")}
 }`;
 
 
-const ariaAttrVal = new Map(AriaAttrVal.map((data) => [data.name, data.valueSet]));
-ariaAttrVal.set("role", "roles")
 const ariaDtsStr = `
 /** */
 interface AriaAttr {
